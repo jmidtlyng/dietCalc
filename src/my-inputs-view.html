@@ -1,0 +1,1097 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+
+<dom-module id="my-inputs-view">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: 16px;
+        --paper-radio-button-size: 25px;
+      }
+      .center {
+        margin: auto;
+        text-align: center;
+      }
+      .title-conjunction {
+        font-size: 16px;
+        height: 25px;
+      }
+      h1 {
+        line-height: 25px;
+      }
+      .social {
+        color: #3f51b5;
+        padding-right: 8px;
+        padding-left: 8px;
+        text-decoration: none;
+      }
+      .chevy {
+        vertical-align: top;
+      }
+      .toggle-standard {
+        display: block;
+        margin: auto;
+        max-width: 760px;
+      }
+      .short-slider {
+        padding: 10px;
+        width: 280px;
+        display: inline-block;
+        --paper-slider-input: {
+          min-width: 23px;
+        };
+      }
+      .radio-box {
+        display: inline-block;
+        width: 270px;
+        text-align: left;
+        vertical-align: text-top;
+        border-style: solid;
+        border-radius: 20px;
+        margin: 5px;
+        padding: 15px;
+      }
+      .rbox {
+        text-align: center;
+        display: inline-block;
+        border-style: solid;
+        border-radius: 20px;
+        vertical-align: top;
+        margin-top: 4px;
+      }
+      .rbox .radio-box {
+        border-style: none;
+        display: block;
+      }
+      .rbox-container {
+        display: block;
+        margin: auto;
+        text-align: center;
+      }
+      .feet-in {
+        width: 38px;
+        font-size: 15px;
+        text-align: center;
+        border-bottom: solid 1px;
+        display: inline-block;
+        color: #212121;
+        border-color: #212121;
+        vertical-align: middle;
+      }
+      .goal-copy {
+        font-size: 22px;
+      }
+      .calorie-goal {
+        font-size: 30px;
+        font-weight: 700;
+        color: #3f51b5;
+      }
+      .nut-sliders {
+        text-align: center;
+      }
+      .form-block {
+        display: block;
+        margin: auto;
+      }
+      .results {
+        display: block;
+        margin: auto;
+        width: 220px;
+      }
+      .result-title {
+        font-size: 30px;
+        font-weight: 500;
+      }
+      .results dt {
+        text-align: center;
+        padding-top: 10px;
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .results dd {
+        font-size: 20px;
+        font-weight: 300;
+      }
+      a:link {
+        text-decoration: none;
+      }
+      label {
+        font-size: 20px;
+      }
+      paper-slider{
+        margin:auto;
+        width: 100%;
+        max-width: 800px;
+        --paper-slider-input: {
+          min-width: 23px;
+        };
+        --paper-slider-height: 18px;
+        --paper-slider-knob-start-color: red;
+      }
+      .heightImp {
+        width: 82%;
+        max-width: 800px;
+        margin-left: 0px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      @media screen and (min-width: 375px) {
+        .heightImp {
+          width: 84%;
+        }
+      }
+      @media screen and (min-width: 460px) {
+        .heightImp {
+          width: 86%;
+        }
+      }
+      @media screen and (min-width: 520px) {
+        .heightImp {
+          width: 88%;
+        }
+      }
+      @media screen and (min-width: 590px) {
+        .heightImp {
+          width: 89%;
+        }
+      }
+      @media screen and (min-width: 740px) {
+        .heightImp {
+          width: 91%;
+        }
+      }
+      .heightImpDiv {
+        width: 100%;
+        max-width: 800px;
+        display: inline-block;
+        margin: auto;
+        text-align: left;
+      }
+      paper-radio-button {
+        text-align: left;
+        max-width: 250px;
+      }
+      paper-input{
+        width: 300px;
+        display: inline-block;
+        vertical-align: top;
+        margin: auto;
+        text-align: left;
+      }
+      paper-slider.in:after {
+        content: "in";
+      }
+      paper-slider.cm:after {
+        content: "cm";
+      }
+      paper-slider.lbs:after {
+        content: "lbs";
+      }
+      paper-slider.kgs:after {
+        content: "kgs";
+      }
+      paper-slider.dpw:after {
+        content: "days";
+      }
+      paper-slider.mpd:after {
+        content: "min";
+      }
+      @media screen and (min-width: 420px) {
+        .short-slider {
+          width: 360px;
+        }
+      }
+    </style>
+
+    <h1 class="center">
+      Mac Track
+      <br/>
+      <span class='title-conjunction'>by</span>
+      <br/>
+    </h1>
+    <div class='center'>
+      <img src='/images/logo.png' style='width: 140px;'/>
+      <br/>
+      <a class='social' href="https://www.facebook.com/sharer/sharer.php?u=Calorie%20expenditure%20calculator%20at%20https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="vaadin-icons:facebook-square"></iron-icon>
+      </a>
+      <a class='social' href="https://twitter.com/intent/tweet?text=Calorie%20expenditure%20calculator%20at%20https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="vaadin-icons:twitter"></iron-icon>
+      </a>
+      <a class='social' href="mailto:?Subject=Calorie%20expenditure%20calculator&body=https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="communication:email"></iron-icon>
+      </a>
+      <br/>
+      <a href='http://www.anycityfitness.com/' target="_blank">
+        ANY CITY FITNESS<iron-icon class="chevy" icon="icons:chevron-right"></iron-icon>
+      </a>
+    </div>
+    <div class="center">
+      <label id="gender">Select your gender:</label>
+      <br/>
+      <paper-radio-group aria-labelledby="gender" selected="{{gender}}">
+        <paper-radio-button name="m"><u>I'm a man</u></paper-radio-button>
+        <paper-radio-button name="w" class="border-button"><u>I'm a woman</u></paper-radio-button>
+      </paper-radio-group>
+    </div>
+    <br/>
+
+    <template is="dom-if" if="{{gender}}">
+      <div  class="center">
+        <label>Select your age:</label>
+        <paper-slider id="age" pin min="15" max="80" editable value="{{age}}"></paper-slider>
+      </div>
+    </template>
+    <template is="dom-if" if="{{enteredAge}}">
+      <div class="toggle-standard">
+        <paper-toggle-button id="toggle-imperial" checked="{{imperial}}">Imperial</paper-toggle-button>
+        <paper-toggle-button id="toggle-metric" checked="{{metric}}">Metric</paper-toggle-button>
+
+      </div>
+      <div class="center">
+        <label>Select your height:</label>
+        <br/>
+          <template is="dom-if" if="{{imperial}}">
+            <div class="heightImpDiv">
+              <span class='heightImp'><paper-slider id="height-imperial" pin min="48" max="96" immediate-value="{{heightImpNow}}" value="{{heightImp}}"></paper-slider></span>
+              <span class="feet-in">
+                {{feetIn}}
+              </span>
+            </div>
+          </template>
+          <template is="dom-if" if="{{metric}}">
+            <paper-slider id="height-metric" pin class="cm" min="120" max="245" editable value="{{heightM}}"></paper-slider>
+          </template>
+      </div>
+    </template>
+    <template is="dom-if" if="{{enteredHeight}}">
+      <div class="center">
+        <label>Select your weight:</label>
+          <template is="dom-if" if="{{imperial}}">
+            <paper-slider id="weight-imperial" pin class="lbs" min="90" max="600" editable value="{{weightImp}}"></paper-slider>
+          </template>
+          <template is="dom-if" if="{{metric}}">
+            <paper-slider id="weight-metric" pin class="kgs" min="36" max="227" editable value="{{weightM}}"></paper-slider>
+          </template>
+      </div>
+    </template>
+    <br/>
+
+    <template is="dom-if" if="{{enteredWeight}}">
+      <div class="center">
+        <label id="activity">How active are you?</label>
+        <br/>
+        <paper-radio-group aria-labelledby="activity" selected="{{activity}}">
+          <paper-radio-button name="sedentary" class="radio-box">
+            <u>Sedentary</u>
+            <br>
+            Sit most of the day
+            <br>
+            (desk job)
+          </paper-radio-button>
+          <paper-radio-button name="light" class="radio-box">
+            <u>Light Activity</u>
+            <br>
+              Standing most of the day
+              <br>
+              (teacher, sales, etc)
+          </paper-radio-button>
+          <br/>
+          <paper-radio-button name="active" class="radio-box">
+            <u>Active</u>
+            <br>
+              Active most of the day
+              <br>
+              (waiting, delivery, etc)
+          </paper-radio-button>
+          <paper-radio-button name="very" class="radio-box">
+            <u>Very Active</u>
+            <br>
+              Heavily active most of the day (construction, bike messenger, etc)
+          </paper-radio-button>
+        </paper-radio-group>
+      </div>
+    </template>
+    <br/>
+
+  <template is="dom-if" if="{{activity}}">
+    <div class="inline-center">
+      <div class="short-slider">
+        <label>Days per week exercising:</label>
+          <paper-slider id="exercise-days" pin snaps class="dpw" min="0" max="7"  editable value="{{exDays}}"></paper-slider>
+      </div>
+      <div class="short-slider">
+        <label>Minutes per day exercising:</label>
+          <paper-slider id="exercise-minutes" pin class="mpd" min="0" max="360" editable value="{{exMins}}"></paper-slider>
+      </div>
+    </div>
+  </template>
+
+  <template is="dom-if" if='{{enteredEx}}'>
+    <div class="center">
+      <label id="intensity">How intense are your workouts?</label>
+      <br/>
+      <paper-radio-group aria-labelledby="intensity" selected="{{intensity}}">
+        <paper-radio-button name="light" class="radio-box">
+          <u>Light</u>
+          <br>
+          I can hold a conversation
+        </paper-radio-button>
+        <paper-radio-button name="moderate" class="radio-box">
+          <u>Moderate</u>
+          <br>
+            I get winded
+        </paper-radio-button>
+        <br/>
+        <paper-radio-button name="difficult" class="radio-box">
+          <u>Difficult</u>
+          <br>
+            I always break a sweat and maintain a high heart rate
+        </paper-radio-button>
+        <paper-radio-button name="intense" class="radio-box">
+          <u>Intense</u>
+          <br>
+            Near death experience
+        </paper-radio-button>
+      </paper-radio-group>
+    </div>
+  </template>
+  <br/>
+
+  <template is="dom-if" if="{{intensity}}">
+    <div class="rbox-container">
+      <label id="goals">What's your fitness goal?</label>
+      <br/>
+        <paper-radio-group selected='{{fatBurn}}' class='rbox'>
+          <strong>Weight Loss/Fat Burn</strong>
+          <br/>
+          <paper-radio-button name="loss-fifteen" class="radio-box">
+            <em>-15%</em> Recommended
+          </paper-radio-button>
+          <paper-radio-button name="loss-twenty" class="radio-box">
+            <em>-20%</em> Aggressive
+          </paper-radio-button>
+          <paper-radio-button name="loss-twentyfive" class="radio-box">
+            <em>-25%</em> Reckless
+          </paper-radio-button>
+        </paper-radio-group>
+        <paper-radio-group selected='{{building}}' class="rbox">
+          <strong>Building</strong>
+          <br/>
+          <paper-radio-button name="gain-five" class="radio-box">
+            <em>+5%</em> Cautious
+          </paper-radio-button>
+          <paper-radio-button name="gain-ten" class="radio-box">
+            <em>+10%</em> Standard
+          </paper-radio-button>
+          <paper-radio-button name="gain-fifteen" class="radio-box">
+            <em>+15%</em> Aggressive
+          </paper-radio-button>
+        </paper-radio-group>
+        <br/>
+        <paper-radio-group selected='{{equalBurn}}' class="rbox">
+          <strong>Equal to Daily Calories Burned</strong>
+          <br/>
+          <paper-radio-button name="equal-burned" class="radio-box">
+            Equal to Daily Calories Burned
+          </paper-radio-button>
+        </paper-radio-group>
+        <paper-radio-group selected='{{customChoice}}' class="rbox">
+          <strong>Custom</strong>
+          <br/>
+          <paper-radio-button name="custom" class="radio-box">
+            <form>
+              <input type="number" id="custom-cal" style="width: 50px;" value="{{customCals::change}}"/> Calories
+            </form>
+          </paper-radio-button>
+        </paper-radio-group>
+    </div>
+  </template>
+
+  <template is="dom-if" if="{{goalCal}}">
+    <br/>
+    <br/>
+    <div class="center">
+        <span class='goal-copy'>TARGET CALORIES:</span>
+        <span class='calorie-goal'>{{goalCal}}</span>
+    </div>
+    <div class='center'>
+      <a class='social' href="https://www.facebook.com/sharer/sharer.php?u=Calorie%20expenditure%20calculator%20at%20https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="vaadin-icons:facebook-square"></iron-icon>
+      </a>
+      <a class='social' href="https://twitter.com/intent/tweet?text=Calorie%20expenditure%20calculator%20at%20https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="vaadin-icons:twitter"></iron-icon>
+      </a>
+      <a class='social' href="mailto:?Subject=Calorie%20expenditure%20calculator&body=https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="communication:email"></iron-icon>
+      </a>
+      <br/>
+      <a href='http://www.anycityfitness.com/' target="_blank">
+        ANY CITY FITNESS<iron-icon class="chevy" icon="icons:chevron-right"></iron-icon>
+      </a>
+    </div>
+    <br/>
+    <br/>
+  </template>
+
+  <template is="dom-if" if="{{showEmail}}">
+    <div class="center">
+      <span class='cta'>Please send us your contact info</span>
+      <form id='contactForm'>
+        <paper-input label="Name" required auto-validate value="{{usrName}}"></paper-input>
+        <paper-input label="Email" required auto-validate value="{{email}}"><iron-icon icon="communication:email" prefix></iron-icon></paper-input>
+        <paper-button type='submit' toggles raised active="{{emailSubmit}}">GET RESULTS</paper-button>
+      </form>
+    </div>
+  </template>
+  <br/>
+
+  <template is="dom-if" if="{{sentInfo}}">
+    <div class="rbox-container">
+      <div class="rbox">
+        <label id="protein">Protein</label>
+        <br/>
+        <paper-radio-group aria-labelledby="protein" selected="{{protRatio}}">
+          <paper-radio-button name="point-seven" class="radio-box">
+            0.7 grams x lb of body weight
+          </paper-radio-button>
+          <paper-radio-button name="point-eight" class="radio-box">
+            0.8 grams x lb of body weight
+          </paper-radio-button>
+          <paper-radio-button name="point-nine" class="radio-box">
+            0.9 grams x lb of body weight
+          </paper-radio-button>
+          <paper-radio-button name="custom" class="radio-box">
+            <form>
+              <input type="number" id="custom-prot" style="width: 50px;" value="{{customProt::change}}"/> custom grams x lb of body weight
+            </form>
+          </paper-radio-button>
+        </paper-radio-group>
+      </div>
+
+      <div class="rbox">
+        <label id="fat">Fat</label>
+        <br/>
+        <paper-radio-group aria-labelledby="fat" selected="{{fatRatio}}">
+          <paper-radio-button name="point-three-five" class="radio-box">
+            0.35 grams x lb of body weight
+          </paper-radio-button>
+          <paper-radio-button name="point-four" class="radio-box">
+            0.4 grams x lb of body weight
+          </paper-radio-button>
+          <paper-radio-button name="point-four-five" class="radio-box">
+            0.45 grams x lb of body weight
+          </paper-radio-button>
+          <paper-radio-button name="custom" class="radio-box">
+            <form>
+              <input type="number" id="custom-fat" style="width: 50px;" value="{{customFat::change}}"/> custom grams x lb of body weight
+            </form>
+          </paper-radio-button>
+        </paper-radio-group>
+      </div>
+
+      <div class="rbox">
+        <label>Carbs</label>
+        <br/>
+        Carbohydrates are calculated by removing protein<br>and fat calories from daily calories burned.<br>The remaining calories will go to carbs.
+      </div>
+    </div>
+    <br />
+
+    <div class="nut-sliders">
+      <label>Protein</label>
+      <paper-slider id="prot-slider" pin class="nut-slider" min="0" max="{{protMax}}" editable value="{{protein}}" toggle="true" on-change="protPressed"></paper-slider>
+      <label>Fat</label>
+      <paper-slider id="fat-slider" pin class="nut-slider" min="0" max="{{fatMax}}" editable value="{{fat}}"  toggle="true" on-change="fatPressed"></paper-slider>
+      <label>Carbs</label>
+      <paper-slider id="carb-slider" pin class="nut-slider" min="0" max="{{carbMax}}" editable value="{{carbs}}"  toggle="true" on-change="carbsPressed"></paper-slider>
+    </div>
+    <br/>
+    <div class='results'>
+      <dl>
+        <dt><span class='result-title'>RESULTS</span></dt>
+        <dt>Protein</dt>
+        <dd>{{protein}} grams / day</dd>
+        <dt>Fat</dt>
+        <dd>{{fat}} grams / day</dd>
+        <dt>Carbohydrates</dt>
+        <dd>{{carbs}} grams / day</dd>
+        <dt>Target Calories</dt>
+        <dd>{{goalCal}} cals / day</dd>
+        <dt>Base Metabolic Rate</dt>
+        <dd>{{bmr}} cals / day</dd>
+        <dt>Total Calories Burned</dt>
+        <dd>{{totalCal}} cals / day</dd>
+      </dl>
+    </div>
+    <div class='center'>
+      <a class='social' href="https://www.facebook.com/sharer/sharer.php?u=Calorie%20expenditure%20calculator%20at%20https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="vaadin-icons:facebook-square"></iron-icon>
+      </a>
+      <a class='social' href="https://twitter.com/intent/tweet?text=Calorie%20expenditure%20calculator%20at%20https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="vaadin-icons:twitter"></iron-icon>
+      </a>
+      <a class='social' href="mailto:?Subject=Calorie%20expenditure%20calculator&body=https://anycityfitness.com" target='_blank'>
+        <iron-icon icon="communication:email"></iron-icon>
+      </a>
+      <br/>
+      <a href='http://www.anycityfitness.com/' target="_blank">
+        ANY CITY FITNESS<iron-icon class="chevy" icon="icons:chevron-right"></iron-icon>
+      </a>
+    </div>
+  </template>
+</template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'my-inputs-view',
+      properties: {
+        imperial: {
+          type: Boolean,
+          notify: true,
+          value: true,
+          observer: '_toggleImperial'
+        },
+        metric: {
+          type: Boolean,
+          notify: true,
+          value: false,
+          observer: '_toggleMetric'
+        },
+        gender: {
+          type: Number,
+          notify:true
+        },
+        age: {
+          type: Number,
+          notify:true
+        },
+        enteredAge: {
+          type: Boolean,
+          computed: 'selectedAge(age)'
+        },
+        feetIn:{
+          type: String,
+          value: '4\'0\"',
+          computed: 'inToFeet(heightImpNow)'
+        },
+        heightImp: {
+          type: Number,
+          notify:true,
+          observer: '_adjHeightImp'
+        },
+        heightImpNow: {
+          type: Number,
+          notify: true
+        },
+        heightM: {
+          type: Number,
+          notify:true,
+          observer: '_adjHeightM'
+        },
+        enteredHeight: {
+          type: Boolean,
+          computed: 'selectedHeight(heightImp, heightM)'
+        },
+        weightImp: {
+          type: Number,
+          notify:true,
+          observer: '_adjWeightImp'
+        },
+        weightM: {
+          type: Number,
+          notify:true,
+          observer: '_adjWeightM'
+        },
+        enteredWeight: {
+          type: Boolean,
+          computed: 'selectedWeight(weightImp, weightM)'
+        },
+        activity: {
+          type: String,
+          notify:true
+        },
+        exDays: {
+          type: Number,
+          notify:true
+        },
+        exMins: {
+          type: Number,
+          notify:true
+        },
+        enteredEx: {
+          type: Boolean,
+          computed: 'selectedDaysAndMins(exDays, exMins)'
+        },
+        intensity: {
+          type: String,
+          notify:true
+        },
+        fatBurn: {
+          type: String,
+          notify: true,
+          observer: '_fatBurnClick'
+        },
+        equalBurn: {
+          type: String,
+          notify: true,
+          observer: '_eqBurnClick'
+        },
+        building: {
+          type: String,
+          notify: true,
+          observer: '_buildClick'
+        },
+        customChoice: {
+          type: String,
+          notify: true,
+          observer: '_custClick'
+        },
+        goal: {
+          type: String,
+          notify:true
+        },
+        customCals: {
+          type: Number,
+          notify:true,
+          value: 1234
+        },
+        bmr: {
+          type: Number,
+          computed: 'compBmr(gender, age, heightM, weightM)'
+        },
+        totalCal: {
+          type: Number,
+          computed: 'compCals(bmr, activity, exDays, exMins, intensity)'
+        },
+        goalCal: {
+          type: Number,
+          computed: 'compGoalCals(totalCal, goal, customCals)'
+        },
+        showEmail: {
+          type: Boolean,
+          computed: 'compShowEmail(goalCal, sentInfo)'
+        },
+        usrName: {
+          type: String,
+          notify: true
+        },
+        email: {
+          type: String,
+          notify: true
+        },
+        emailSubmit: {
+          type: Boolean,
+          notify: true,
+          observer: '_validateInfo'
+        },
+        sentInfo: {
+          type: Boolean,
+          notify: true,
+          value: false
+        },
+        protRatio: {
+          type: String,
+          notify: true,
+          value: 'point-seven'
+        },
+        customProt: {
+          type: Number,
+          notify: true,
+          value: 1.0
+        },
+        fatRatio: {
+          type: String,
+          notify: true,
+          value: 'point-three-five',
+        },
+        customFat: {
+          type: Number,
+          notify: true,
+          value: 0.5
+        },
+        protMax: {
+          type: Number,
+          computed: 'compProtMax(goalCal)'
+        },
+        fatMax: {
+          type: Number,
+          computed: 'compFatMax(goalCal)'
+        },
+        carbMax: {
+          type: Number,
+          computed: 'compCarbMax(goalCal)'
+        },
+        protein: {
+          type: Number,
+          notify: true
+        },
+        fat: {
+          type: Number,
+          notify: true,
+        },
+        carbs: {
+          type: Number,
+          notify: true
+        },
+        protPercet: {
+          type: Number,
+          computed: 'compProtPercent(protein, goalCal)'
+        },
+        fatPercent: {
+          type: Number,
+          computed: 'compFatPercent(fat, goalCal)'
+        },
+        carbPercent: {
+          type: Number,
+          computed: 'compCarbPercent(carbs, goalCal)'
+        }
+      },
+
+      observers: [
+        'updateNuts(weightM, protRatio, customProt, fatRatio, customFat, goalCal)',
+        'sendToGoogle(usrName, email, emailSubmit)'
+      ],
+
+      _toggleImperial: function(newValue) {
+        if(newValue){
+          this.metric = false;
+        } else {
+          this.metric = true;
+        }
+      },
+      _toggleMetric: function(newValue){
+        if(newValue){
+          this.imperial = false;
+        } else {
+          this.imperial = true;
+        }
+      },
+
+      _adjHeightImp: function(newValue){
+        if(this.imperial){
+          this.heightM = newValue * 2.54;
+        }
+      },
+      _adjHeightM: function(newValue){
+        if(this.metric){
+          this.heightImp = newValue / 2.54;
+        }
+      },
+      _adjWeightImp: function(newValue){
+        if(this.imperial){
+          this.weightM = newValue * 0.453592;
+        }
+      },
+      _adjWeightM: function(newValue){
+        if(this.metric){
+          this.weightImp = newValue / 0.453592;
+        }
+      },
+      inToFeet: function(heightImpNow){
+        let feet = Math.floor(heightImpNow / 12);
+        let ins = heightImpNow % 12;
+        return feet + '\'' + ins + '\"';
+      },
+
+      _fatBurnClick: function(newValue){
+        this.customChoice = '';
+        this.equalBurn = '';
+        this.building = '';
+        this.fatBurn = newValue;
+        this.goal = newValue;
+      },
+      _eqBurnClick: function(newValue){
+        this.fatBurn = '';
+        this.customChoice = '';
+        this.building = '';
+        this.equalBurn = newValue;
+        this.goal = newValue;
+      },
+      _buildClick: function(newValue){
+        this.fatBurn = '';
+        this.equalBurn = '';
+        this.customChoice = '';
+        this.building = newValue;
+        this.goal = newValue;
+      },
+      _custClick: function(newValue){
+        this.fatBurn = '';
+        this.equalBurn = '';
+        this.building = '';
+        this.customChoice = newValue;
+        this.goal = newValue;
+      },
+
+      selectedAge: function(age){
+        if(age !== 15){
+          return true;
+        }
+      },
+      selectedHeight: function(heightImp, heightM){
+        if(heightImp !== 48){
+          return true;
+        }
+      },
+      selectedWeight: function(weightImp, weightM){
+        if((weightImp !== 90) && (weightM !== 36)){
+          return true;
+        }
+      },
+      selectedDaysAndMins: function(exDays, exMins){
+        if((exDays !== 0) && (exMins !== 0)) {
+          return true;
+        }
+      },
+
+      compBmr: function(gender, age, heightM, weightM){
+        if(gender === "m") {
+          return Math.round((10 * weightM) + (6.25 * heightM) - (5 * age) + 5);
+        } else if(gender === "w") {
+          return Math.round((10 * weightM) + (6.25 * heightM) - (5 * age) - 161);
+        }
+      },
+
+      compCals: function(bmr, activity, exDays, exMins, intensity) {
+
+        var activityCoef = null;
+        var intesityCoef = null;
+        var finalCalc = null;
+
+        switch(activity) {
+          case "sedentary":
+            activityCoef = 1.15;
+            break;
+          case "light":
+            activityCoef = 1.25;
+            break;
+          case "active":
+            activityCoef = 1.35;
+            break;
+          case "very":
+            activityCoef = 1.40;
+            break;
+        }
+
+        switch(intensity) {
+          case "light":
+            intensityCoef = 0.7;
+            break;
+          case "moderate":
+            intensityCoef = 1.1;
+            break;
+          case "difficult":
+            intensityCoef = 1.4;
+            break;
+          case "intense":
+            intensityCoef = 1.7;
+            break;
+        }
+
+        return Math.round(( bmr * activityCoef) + (( exMins * intensityCoef ) * exDays));
+      },
+
+      compGoalCals: function(totalCal, goal, customCals){
+        var goalMultiplier = null;
+
+        switch(goal) {
+          case "loss-fifteen":
+            goalMultiplier = 0.85;
+            break;
+          case "loss-twenty":
+            goalMultiplier = 0.8;
+            break;
+          case "loss-twentyfive":
+            goalMultiplier = 0.75;
+            break;
+          case "equal-burned":
+            goalMultiplier = 1;
+            break;
+          case "gain-five":
+            goalMultiplier = 1.05;
+            break;
+          case "gain-ten":
+            goalMultiplier = 1.1;
+            break;
+          case "gain-fifteen":
+            goalMultiplier = 1.15;
+            break;
+          case "custom":
+            return customCals;
+            break;
+        }
+
+        return Math.floor(totalCal * goalMultiplier);
+      },
+
+      _validateInfo: function(newValue) {
+        if(this.usrName && this.email && newValue){
+          this.sentInfo = true;
+        }
+      },
+
+      compShowEmail: function(goalCal, sentInfo){
+        if(goalCal) {
+          if(!sentInfo) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      },
+
+      sendToGoogle: function(usrName, email, emailSubmit){
+        // from https://github.com/heaversm/google-custom-form
+        if(emailSubmit) {
+          let nameInput = encodeURIComponent(usrName);
+          let emailInput = encodeURIComponent(email);
+          let nameID = "entry.157719949";
+          let emailID = "entry.1659635801";
+          let baseURL = 'https://docs.google.com/forms/d/1y9YMWBf7taOVfDUMxR9gE1H4TNzAEIlv5kc0Q2l-r64/formResponse?';
+          let submitRef = '&submit=Submit';
+          let submitURL = (baseURL + nameID + "=" + nameInput + "&" + emailID + "=" + emailInput + submitRef);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', submitURL, true);
+          xhr.send();
+
+          xhr.onreadystatechange = processRequest;
+
+          function processRequest(e){
+            if(xhr.readyState == 4 && xhr.status == 200) {
+              let response = xhr.responseText;
+            }
+          }
+        }
+      },
+
+      updateNuts: function(weightM, protRatio, customProt, fatRatio, customFat, goalCal) {
+        let protCoef = null;
+        let fatCoef = null;
+
+        switch(protRatio) {
+          case "point-seven":
+            protCoef = 0.7;
+            break;
+          case "point-eight":
+            protCoef = 0.8;
+            break;
+          case "point-nine":
+            protCoef = 0.9;
+            break;
+          case "custom":
+            protCoef = customProt;
+            break;
+          }
+
+        switch(fatRatio) {
+          case "point-three-five":
+            fatCoef = 0.35;
+            break;
+          case "point-four":
+            fatCoef = 0.4;
+            break;
+          case "point-four-five":
+            fatCoef = 0.45;
+            break;
+          case "custom":
+            fatCoef = customFat;
+            break;
+          }
+
+        let newProt = Math.round( protCoef * ( weightM / 0.453592 ) );
+        let newFat = Math.round( fatCoef * ( weightM / 0.453592 ) );
+        this.protein = newProt;
+        this.fat = newFat;
+        this.carbs = ( goalCal - (newProt * 4) - (newFat * 9) ) / 4;
+      },
+
+      compProtMax: function(goalCal) {
+        return (goalCal / 4);
+      },
+      compFatMax: function(goalCal) {
+        return (goalCal / 9);
+      },
+      compCarbMax: function(goalCal) {
+        return (goalCal / 4);
+      },
+
+      compProtPercent(protein, goalCal) {
+        let protPercent = ( Math.round( 100 * (protein / goalCal) ) ) / 100;
+        return protPercent;
+      },
+      compFatPercent(fat, goalCal) {
+        let fatPercent = ( Math.round( 100 * (fat / goalCal) ) ) / 100;
+        return fatPercent;
+      },
+      compCarbPercent(carbs, goalCal) {
+        let carbPercent = ( Math.round( 100 * (carbs / goalCal) ) ) / 100;
+        return carbPercent;
+      },
+
+      protPressed: function() {
+        let calDif = this.goalCal - (4 * this.protein) - (9 * this.fat) - (4 * this.carbs);
+
+        if( ( (this.fat === 0) && (calDif < 0) ) || ( (calDif < 13) && (calDif > -13) ) ) {
+          this.carbs += Math.round(calDif / 4);
+        } else {
+          let halfCals = calDif / 2;
+          let fatChange = Math.round( halfCals / 9 );
+          let carbChange = Math.round( halfCals / 4 );
+          if((this.fat + fatChange) < 0 ){
+            carbChange += Math.round((this.fat + fatChange) / 4);
+            this.fat = 0;
+            this.carbs += carbChange;
+          } else if((this.carbs + carbChange) < 0){
+            fatChange += Math.round((this.carbs + carbChange) / 9);
+            this.carbs = 0;
+            this.fat += fatChange;
+          } else {
+            this.fat += fatChange;
+            this.carbs += carbChange;
+          }
+        }
+      },
+      fatPressed: function() {
+        let calDif = this.goalCal - (4 * this.protein) - (9 * this.fat) - (4 * this.carbs);
+
+        if( ( (this.carbs === 0) && (calDif < 0) ) ) {
+          this.protein += Math.round(calDif / 4);
+        } else {
+          let carbChange = Math.round( calDif / 4 );
+          if((this.carbs + carbChange) < 0 ){
+            let protChange = Math.round((this.carbs + carbChange) / 4);
+            this.carbs = 0;
+            this.protein += protChange;
+          } else {
+            this.carbs += carbChange;
+          }
+        }
+      },
+      carbsPressed: function() {
+        let calDif = this.goalCal - (4 * this.protein) - (9 * this.fat) - (4 * this.carbs);
+
+        if( ( (this.fat === 0) && (calDif < 0) ) ) {
+          this.protein += (calDif / 4);
+        } else {
+          let fatChange = Math.round( calDif / 9 );
+          if((this.fat + fatChange) < 0 ){
+            let protChange = Math.round((this.fat + fatChange) / 4);
+            this.fat = 0;
+            this.protein += protChange;
+          } else {
+            this.fat += fatChange;
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>

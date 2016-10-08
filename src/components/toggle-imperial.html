@@ -1,0 +1,19 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="toggle-imperial">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+    </style>
+      <!-- Two toggles with opposite values for imperial and metric -->
+      <paper-button id="toggle-imperial" checked="[[toggleImperial]]">Imperial</paper-toggle-button>
+      <paper-button id="toggle-metric" checked="[[toggleMetric]]">Metric</paper-toggle-button>
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'toggle-imperial',
+    });
+  </script>
+</dom-module>
