@@ -445,10 +445,15 @@
 
   <template is="dom-if" if="{{showEmail}}">
     <div class="center">
-      <span class='cta'>Get your results</span>
+      <span class='cta'>GET THE RESULTS</span>
       <form id='contactForm'>
         <paper-input label="Name" required auto-validate value="{{usrName}}"></paper-input>
         <paper-input label="Email" required auto-validate value="{{email}}"><iron-icon icon="communication:email" prefix></iron-icon></paper-input>
+        <br/>
+        <template is="dom-if" if="{{invalidSubmit}}">
+          <span style="color: red;">please enter your Name and Email to see results</span>
+        </template>
+        <br/>
         <paper-button type='submit' toggles raised active="{{emailSubmit}}">GET RESULTS</paper-button>
       </form>
     </div>
@@ -688,6 +693,11 @@
         email: {
           type: String,
           notify: true
+        },
+        invalidSubmit: {
+          type: Boolean,
+          notify: true,
+          value: false
         },
         emailSubmit: {
           type: Boolean,
@@ -937,7 +947,14 @@
         if(this.usrName && this.email && newValue){
           this.sentInfo = true;
         }
-      },
+      },/*
+      invalidSubmission: function(emailSubmit) {
+        console.log(emailSubmit);
+        if( emailSubmit && (!this.usrName || !this.email) ){
+          console.log('i ran');
+          return true;
+        }
+      },*/
 
       compShowEmail: function(goalCal, sentInfo){
         if(goalCal) {
@@ -951,7 +968,7 @@
 
       sendToGoogle: function(usrName, email, emailSubmit){
         // from https://github.com/heaversm/google-custom-form
-        if(emailSubmit) {
+        if(emailSubmit && usrName && email) {
           let nameInput = encodeURIComponent(usrName);
           let emailInput = encodeURIComponent(email);
           let nameID = "entry.157719949";
@@ -970,6 +987,9 @@
               let response = xhr.responseText;
             }
           }
+        } else if(emailSubmit) {
+          this.invalidSubmit = true;
+          this.emailSubmit = false;
         }
       },
 
